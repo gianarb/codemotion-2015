@@ -76,21 +76,71 @@
                     </p>
 				</section>
 
-				<section data-state="scale-state" id="scaleSlide" data-background="img/page.jpg">
-					<h1>Scalability</h1>
+                <section data-state="scale-state" data-background="img/page.jpg" id="scaleSlide">
+                    <h2>Scalability</h2>
                     <div style="height:220px">
-                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
-                        <div class="ec2" style="display: none; margin: 0px 5px; width: 100px; height: 100px;"></div>
-                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
-                        <div class="ec2" style="display: none; margin: 0px 5px; width: 100px; height: 100px;"></div>
-                        <div class="ec2" style="display: none; margin: 0px 5px; width: 100px; height: 100px;"></div>
-                        <div style="display:block; margin-top: 5px;"></div>
-                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
-                        <div class="ec2" style="display: none; margin: 0px 5px; width: 100px; height: 100px;"></div>
-                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
-                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
-                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px; opacity: 0.206107;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <div style="display:block; margin-top: 5px;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <div class="ec2" style="display:inline-block; margin: 0 5px; width: 100px; height: 100px;"></div>
+                    <h3 class="message"></h3>
                     </div>
+                </section>
+
+				<section data-background="img/page.jpg">
+                    <h2>What is scalabily?</h2>
+                    <p><strong>Scalability <=> High avalability.</strong></p>
+                    <blockquote>Scalability is the ability of a system, network, or process to handle a growing amount
+                        of work in a capable manner or its ability to be enlarged to accommodate that growth.
+                        </br></br><i>cit. Wikipedia.</i>
+                    </blockquote>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>There are two types of scalability</h2>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h3>Vertical scalability</h3>
+                    <img src="img/sumo.jpg" style="width:50%"/>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h3>Horizontal scalability</h3>
+                    <img src="img/infr.png"/>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Hourly metric</h2>
+                    <img src="img/day-day.png"/>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h3>The traffic is a peaks's issue</h3>
+                    <img src="img/scale.png" width="70%" />
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h3>Your server supports all traffic ALWAYS</h3>
+                    <img src="img/provision1.png" width="70%" />
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <p>
+                        The differce between this peaks for a lot of time is unused
+                    </p>
+                    <img src="img/provision3.png"/>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>But you pay it!!</h2>
 				</section>
 
 				<section data-background="img/end.jpg">
@@ -135,13 +185,13 @@
                 function(slide) {
                     setInterval(function(){
                         var ec2Count = $('#scaleSlide .ec2').length;
-                        var lottery = parseInt(Math.random() * 1e9) % ec2Count
+                        var lottery = parseInt(Math.random() * 1e9) % ec2Count;
 
                         var selected = $($('#scaleSlide .ec2')[lottery]);
                         if (selected.is(':visible')) {
-                            selected.fadeOut()
+                            selected.fadeOut();
                         } else {
-                            selected.fadeIn()
+                            selected.fadeIn();
                         }
 
                     }, 600);
