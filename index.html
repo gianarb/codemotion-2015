@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Wordpress Scalability with Docker</title>
+
+		<meta name="description" content="Change the current status of our server, full of wordpress installations. Isolate and scale them with docker">
+		<meta name="author" content="Gianluca Arbezzano">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="css/github.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+        <link rel="stylesheet" href="css/mine.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section data-background="img/cover.jpg">
+					<h1>Wordpress</h1>
+					<h3>Scalability with Docker</h3>
+					<p>
+						<small>Created by <a href="http://gianarb.it">Gianluca Arbezzano</a></small>
+					</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+					<h1>Keywords</h1>
+				</section>
+
+				<section data-background="img/page.jpg">
+					<h1>Isolation</h1>
+                    <p class="fragment" data-fragment-index="1">
+                        To increase control of system
+                    </p>
+				</section>
+
+				<section data-background="img/page.jpg">
+					<h1>Isolation</h1>
+                    <p class="fragment" data-fragment-index="1">
+                        To mitigate the security issue
+                    </p>
+				</section>
+
+				<section data-background="img/page.jpg">
+					<h1>Isolation</h1>
+                    <p class="fragment" data-fragment-index="1">
+                        To gurantee scalability
+                    </p>
+				</section>
+
+				<section data-state="scale-state" id="scaleSlide" data-background="img/page.jpg">
+					<h1>Scalability</h1>
+                    <div style="height:220px">
+                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
+                        <div class="ec2" style="display: none; margin: 0px 5px; width: 100px; height: 100px;"></div>
+                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
+                        <div class="ec2" style="display: none; margin: 0px 5px; width: 100px; height: 100px;"></div>
+                        <div class="ec2" style="display: none; margin: 0px 5px; width: 100px; height: 100px;"></div>
+                        <div style="display:block; margin-top: 5px;"></div>
+                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
+                        <div class="ec2" style="display: none; margin: 0px 5px; width: 100px; height: 100px;"></div>
+                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
+                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px;"></div>
+                        <div class="ec2" style="display: inline-block; margin: 0px 5px; width: 100px; height: 100px; opacity: 0.206107;"></div>
+                    </div>
+				</section>
+
+				<section data-background="img/end.jpg">
+					<h2>Thanks!</h2>
+					<p style="font-size:2em;">
+                        <a href="https://github.com/gianarb" target="_blank"><icon class="fa fa-github"></icon></a>
+                        <a href="https://twitter.com/gianarb" target="_blank"><icon class="fa fa-twitter"></icon></a>
+					</p>
+					<p>
+                    <small><a href="http://gianarb.it" target="_blank">gianarb.it</a></small>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+		<script>
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+            var timeout = 700;
+            Reveal.addEventListener(
+                'scale-state',
+                function(slide) {
+                    setInterval(function(){
+                        var ec2Count = $('#scaleSlide .ec2').length;
+                        var lottery = parseInt(Math.random() * 1e9) % ec2Count
+
+                        var selected = $($('#scaleSlide .ec2')[lottery]);
+                        if (selected.is(':visible')) {
+                            selected.fadeOut()
+                        } else {
+                            selected.fadeIn()
+                        }
+
+                    }, 600);
+                },
+                false
+            );
+		</script>
+
+
+	</body>
+</html>

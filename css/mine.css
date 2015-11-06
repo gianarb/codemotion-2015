@@ -1,0 +1,30 @@
+.reveal section img {
+    border-style: none;
+    box-shadow: none;
+}
+.reveal section img.sponsor {
+    border-style: none;
+    width: 200px;
+    margin: 0 0 0 0;
+    box-shadow: none;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4
+{
+    text-transform: none;
+}
+
+.well {
+    background-color: #FFF;
+}
+
+.angular {
+    color: #000000
+}
+
+.angular > span {
+    color: #A6120D;
+}
