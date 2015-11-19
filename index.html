@@ -82,16 +82,12 @@
 
 				<section data-background="img/page.jpg">
 					<h1>Isolation</h1>
-                    <p class="fragment" data-fragment-index="1">
-                        To mitigate the security issue
-                    </p>
+                    <p>To mitigate the security issue</p>
 				</section>
 
 				<section data-background="img/page.jpg">
 					<h1>Isolation</h1>
-                    <p class="fragment" data-fragment-index="1">
-                        To gurantee scalability
-                    </p>
+                    <p>To gurantee scalability</p>
 				</section>
 
                 <section data-state="scale-state" data-background="img/page.jpg" id="scaleSlide">
@@ -158,7 +154,12 @@
 				</section>
 
 				<section data-background="img/page.jpg">
-                    <h2>But you pay it!!</h2>
+                    <h2>you pay it!</h2>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Our infrastructure</h2>
+                    <img src="img/infra-wp.png">
 				</section>
 
 				<section data-background="img/page.jpg">
@@ -168,13 +169,24 @@
 				</section>
 
 				<section data-background="img/page.jpg">
-                    <h2>we submerged by problems</h2>
-                    <img data-fragment-index="1" class="fragment" src="img/problem.png">
-                    <p data-fragment-index="1" class="fragment" >and we hide a lot of them!</p>
+                    <h2>Your switchboard scale?</h2>
+                    <img width="55%" src="img/switchboard.jpg">
 				</section>
 
 				<section data-background="img/page.jpg">
-                    <h2>Our infrastructure</h2>
+                    <h2>There are other problems</h2>
+                    <ul>
+                        <li data-fragment-index="1" class="fragment">Isolation</p>
+                        <li data-fragment-index="2" class="fragment">Scalability</p>
+                        <li data-fragment-index="3" class="fragment">Monitoring</p>
+                        <li data-fragment-index="4" class="fragment">freedom and security</p>
+                    </ul>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>we submerged by problems</h2>
+                    <img data-fragment-index="1" class="fragment" src="img/problem.png">
+                    <p data-fragment-index="1" class="fragment" >and we hide a lot of them!</p>
 				</section>
 
 				<section data-background="img/page.jpg">
@@ -182,6 +194,14 @@
                     <img width="75%" src="img/wp-bench.jpg">
                     <p style="font-size:0.5em">by <a href="https://www.digitalocean.com/company/blog/getting-ready-for-php-7/">DigitalOcean - Erika Heidi</a></p>
 				</section>
+
+                <section>
+                    <p>I know what you think..</p>
+                    <blockquote class="fragment" data-fragment-index="1">Each application require its server!
+                    <small>cit. strong sysadmin</small>
+                    </blockquote>
+                    <p class="fragment" data-fragment-index="2"><strong>I am here to apply this concept at your experience</strong></p>
+                </section>
 
 				<section data-background="img/page.jpg">
                     <h2>Why AWS?</h2>
@@ -193,14 +213,164 @@
 				</section>
 
 				<section data-background="img/page.jpg">
+                    <h2>Elastic <span style="font-size:1.3em;color:red;">Container</span> Service</h2>
+                    <img src="img/ecs.png">
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Linux Container <small>LXC</small></h2>
+                    <p>it is an operating-system-level virtualization environment for running multiple
+                    isolated Linux systems (containers) on a single Linux control host.</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Linux Container <small>LXC</small></h2>
+                    <p>it is an operating-system-level virtualization environment for running multiple
+                    <strong>isolated</strong> Linux systems (containers) on a single Linux control host.</p>
+                    <p class="fragment" data-fragment-index="1"><strong>I love Wikipedia</strong></p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Docker</h2>
+                    <p>Docker containers wrap up a piece of software in a complete
+                    filesystem that contains everything it needs to run: code, runtime, system tools,
+                    system libraries – anything you can install on a server</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Docker</h2>
+                    <pre><code lang="bash">
+Commands:
+    attach    Attach to a running container
+    build     Build an image from a Dockerfile
+    images    List images
+    kill      Kill a running container
+    logs      Fetch the logs of a container
+    ps        List containers
+    restart   Restart a container
+    rm        Remove one or more containers
+    rmi       Remove one or more images
+    run       Run a command in a new container
+    search    Search the Docker Hub for images
+    start     Start one or more stopped containers
+    stop      Stop a running container
+                    </code></pre>
+				</section>
+				<section data-background="img/page.jpg">
+                    <h2>MySQL - dockerfile</h2>
+                    <pre><code lang="dockerfile">
+FROM ubuntu
+
+RUN dpkg-divert --local --rename --add /sbin/initctl
+RUN ln -s /bin/true /sbin/initctl
+
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+RUN apt-get update
+
+RUN apt-get -y install mysql-server
+
+EXPOSE 3306
+
+CMD ["/usr/bin/mysqld_safe"]
+                    </code></pre>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Apache - dockerfile</h2>
+                    <pre><code lang="dockerfile">
+FROM php:5.6-apache
+RUN a2enmod rewrite
+
+RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev
+    && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
+    && docker-php-ext-install gd
+RUN docker-php-ext-install mysqli
+VOLUME /var/www/html
+RUN curl -o wordpress.tar.gz -SL https://wordpress.org/wordpress.tar.gz \
+    && tar -xzf wordpress.tar.gz -C /usr/src/ \
+    && rm wordpress.tar.gz \
+    && chown -R www-data:www-data /usr/src/wordpress
+CMD ["apache2-foreground"]
+                    </code></pre>
+				</section>
+
+                <section>
+                    <h2>Create mysql container</h2>
+                    <pre><code>
+docker build -t gianarb/mysql .
+                    </code></pre>
+                    <p>Same stuff for wordpress</p>
+                </section>
+
+                <section>
+                    <h2>Run all</h2>
+                    <pre><code>
+docker run -t db -p 3306:3306 gianarb/mysql
+                    </code></pre>
+                    <pre lang="bash"><code lang="bash">
+docker run -p 8080:80 -d --name wp1 --link mysql:mysql  wordpress
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>docker compose</h2>
+                    <p>Compose is a tool for defining and running
+                    multi-container Docker applications.
+                    With Compose, you use a Compose file to configure
+                    your application’s services.</p>
+                </section>
+
+                <section>
+                    <h2>docker compose</h2>
+                    <pre><code>
+wp:
+  image: wordpress
+  ports:
+    - 8081:80
+  environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: help_me
+  links:
+    - mysql:mysql
+mysql:
+  image: mysql:5.7
+  environment:
+    MYSQL_ROOT_PASSWORD: help_me
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>docker compose</h2>
+                    <pre><code>
+Commands:
+  build              Build or rebuild services
+  logs               View output from containers
+  ps                 List containers
+  pull               Pulls service images
+  restart            Restart services
+  rm                 Remove stopped containers
+  run                Run a one-off command
+  scale              Set number of containers for a service
+  start              Start services
+  stop               Stop services
+  up                 Create and start containers
+                    </code></pre>
+                </section>
+
+				<section data-background="img/page.jpg">
                     <h2>Elastic Container Service</h2>
-                    <p>it is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster of Amazon EC2 instances<p>
+                    <p>it is a highly scalable, fast, container management service that makes it
+                    easy to run, stop, and manage Docker containers
+                    on a cluster of Amazon EC2 instances<p>
                     <p style="font-size:0.5em">by <a href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html">AWS</a></p>
 				</section>
 
 				<section data-background="img/page.jpg">
                     <h2>Elastic Container Service</h2>
-                    <p><strong>Container instance: </strong> An Amazon EC2 that is running the Amazon ECS Agent. It has been registered to <strong>ECS Cluster</strong></p>
+                    <p><strong>Container instance: </strong> An Amazon EC2 that is running the Amazon ECS Agent.
+                    It has been registered to <strong>ECS Cluster</strong></p>
 				</section>
 
 				<section data-background="img/page.jpg">
@@ -210,7 +380,8 @@
 
 				<section data-background="img/page.jpg">
                     <h2>Elastic Container Service</h2>
-                    <p><strong>Task definition: </strong> A description of an application that contains one or more <strong>container definitions</strong></p>
+                    <p><strong>Task definition: </strong> A description of an application that contains
+                    one or more <strong>container definitions</strong></p>
                     <pre><code lang="json">
 {
     "family": "",
@@ -222,9 +393,140 @@
 				</section>
 
 				<section data-background="img/page.jpg">
+                    <h2>ECS in practice</h2>
+                    <pre><code>
+ecs-cli configure \
+    --region eu-west-1 \
+    --cluster wps \
+    --access-key apikey \
+    --secret-key secreyKey
+                    </pre></code>
+                    <p>Create your cluster and confiugre your cli</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>ECS in practice</h2>
+                    <pre><code>
+ecs-cli up --keypair codemotion-ecs \
+    --capability-iam \
+    --size 1 \
+    --instance-type t2.medium
+                    </pre></code>
+                    <p>Configure Cluster and start first EC2</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>ECS in practice</h2>
+                    <pre><code>
+ecs-cli compose --file docker-compose.yml  \
+    --project-name wp1 up
+                    </pre></code>
+                    <p>Up your first wordpress task, wp1</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>ECS in practice</h2>
+                    <pre><code>
+ecs-cli ps
+                    </pre></code>
+                    <p>See status of your tasks</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>ECS in practice</h2>
+                    <pre><code>
+COMMANDS:
+   configure    Configures your AWS credentials
+   up           Create the ECS Cluster
+   down         Delete the ECS Cluster and associated resources
+   scale        Modify the number of container instances.
+   ps           List all of the running containers.
+   compose      Execute docker-compose style commands
+                on an ECS cluster.
+   help, h      Shows a list of commands or help for one command
+                    </pre></code>
+                    <p class="fragment" data-fragment-index="1">docker-compose style commands?!</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <p>Now we have 2 wordpress that run on different ports 8080 and 8081</p>
+                    <p class="fragment" data-fragment-index="1">Our problem are not finished</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>HAProxy helps you</h2>
+                    <p>
+                     high availability, load balancing, and proxying for TCP and HTTP-based applications.
+                     It is particularly suited for very high traffic web sites and powers quite a
+                     number of the world's most visited ones.
+                    </p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>HAProxy helps you</h2>
+                    <pre><code>
+...
+frontend wp_mananger
+        bind :80
+        acl host_wp1 hdr(host) -i wp1.gianarb.it
+        acl host_wp2 hdr(host) -i wp2.gianarb.it
+        use_backend backend_wp1 if host_wp1
+        use_backend backend_wp2 if host_wp2
+backend backend_wp1
+        server server1 54.229.190.73:8080 check
+backend backend_wp2
+        server server2 54.229.190.73:8081 check
+                    </code></pre>
+                    <p class="fragment" data-fragment-index="1">Maybe this is not the best solution</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Nginx could be a Reverse Proxy</h2>
+                    <img src="img/nginx.png" width="50%">
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Consul</h2>
+                    <img src="img/consul.png" width="50%">
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <p>AWS! AWS! AWS!</p>
+                    <p data-fragment-index="1" class="fragment"><img src="img/funboy.png"></p>
+                    <h2 data-fragment-index="1" class="fragment">You are only a fun boy!</h2>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <img src="img/kubernetes.png">
+                    <p>Manage a cluster of Linux containers as a single system to accelerate Dev and simplify Ops.</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <img src="img/kubernetes-01.svg" width="40%">
+                    <p>Kubernetes is an open source orchestration system for Docker containers.</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <img src="img/swarm.png" width="40%">
+                    <p>Docker Swarm is native clustering for Docker.
+                    It allows you create and access to a pool of Docker hosts using the full suite of Docker tools</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <img src="img/coreos.png" width="30%">
+                    <p>Instead of installing packages via yum or apt, CoreOS uses Linux containers to manage your services at a higher level of abstraction</p>
+				</section>
+
+				<section data-background="img/page.jpg">
                     <h2>Try Elastic Container Service</h2>
                     <p><a href="http://amzn.to/1SbwgcG">amzn.to/1SbwgcG</a></p>
                     <p>Take your coupon</p>
+				</section>
+
+				<section data-background="img/page.jpg">
+                    <h2>Where is your wordpress?!</h2>
+                    <h4 style="text-align:right">I don't know</h4>
+                    <p class="fragment" data-fragment-inex="1">It'll not more a bad response</p>
 				</section>
 
 				<section data-background="img/end.jpg">
