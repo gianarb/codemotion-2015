@@ -578,6 +578,12 @@ backend backend_wp2
 				]
 			});
 
+            Reveal.configure({
+                keyboard: {
+                  38: "prev",
+                  40: "next"
+                }
+            });
             var timeout = 700;
             Reveal.addEventListener(
                 'scale-state',
