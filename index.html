@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Wordpress Scalability with Docker</title>
+		<title>WordPress Scalability with Docker</title>
 
-		<meta name="description" content="Change the current status of our server, full of wordpress installations. Isolate and scale them with docker">
+		<meta name="description" content="Change the current status of our server, full of WordPress installations. Isolate and scale them with docker">
 		<meta name="author" content="Gianluca Arbezzano">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -44,7 +44,7 @@
 			<div class="slides">
 
 				<section data-background="img/cover.jpg">
-					<h1>Wordpress</h1>
+					<h1>WordPress</h1>
 					<h3>Scalability with Docker</h3>
 					<p>
 						<small>Created by <a href="http://gianarb.it">Gianluca Arbezzano</a></small>
@@ -300,7 +300,7 @@ CMD ["apache2-foreground"]
                     <pre><code>
 docker build -t gianarb/mysql .
                     </code></pre>
-                    <p>Same stuff for wordpress</p>
+                    <p>Same stuff for WordPress</p>
                 </section>
 
                 <section>
@@ -421,7 +421,7 @@ ecs-cli up --keypair codemotion-ecs \
 ecs-cli compose --file docker-compose.yml  \
     --project-name wp1 up
                     </pre></code>
-                    <p>Up your first wordpress task, wp1</p>
+                    <p>Up your first WordPress task, wp1</p>
 				</section>
 
 				<section data-background="img/page.jpg">
@@ -449,7 +449,7 @@ COMMANDS:
 				</section>
 
 				<section data-background="img/page.jpg">
-                    <p>Now we have 2 wordpress that run on different ports 8080 and 8081</p>
+                    <p>Now we have 2 WordPress that run on different ports 8080 and 8081</p>
                     <p class="fragment" data-fragment-index="1">Our problem are not finished</p>
 				</section>
 
@@ -524,7 +524,7 @@ backend backend_wp2
 				</section>
 
 				<section data-background="img/page.jpg">
-                    <h2>Where is your wordpress?!</h2>
+                    <h2>Where is your WordPress?!</h2>
                     <h4 style="text-align:right">I don't know</h4>
                     <p class="fragment" data-fragment-inex="1">It'll not more a bad response</p>
 				</section>
